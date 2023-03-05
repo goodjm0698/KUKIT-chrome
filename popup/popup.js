@@ -1,6 +1,5 @@
 const KopasURL = "https://www.koreapas.com/";
 const RecordURL = "http://record.korea.ac.kr/";
-const GitRepoURL = "https://github.com/seohyun0120/quick-sook";
 const LibrsvURL = "https://librsv.korea.ac.kr/";
 const BlackboardURL = "https://kulms.korea.ac.kr/";
 const ScheduleURL = "https://registrar.korea.ac.kr/eduinfo/affairs/schedule.do";
@@ -102,7 +101,18 @@ document.getElementById("clickNotice").addEventListener(
   false
 );
 
+var selectedOption = localStorage.getItem("selectedOption");
+if (selectedOption) {
+  document.getElementById("selectDept").value = selectedOption;
+}
+
 document.getElementById("selectDept").addEventListener("change", function () {
   const loc = this.value;
+  localStorage.setItem("selectedOption", loc);
   openURLInNewTab(loc);
+});
+
+document.getElementById("goDept").addEventListener("click", function () {
+  var selectedOption = document.getElementById("selectDept").value;
+  openURLInNewTab(selectedOption);
 });
